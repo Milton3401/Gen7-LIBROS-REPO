@@ -35,7 +35,6 @@ public class AutoresRepository implements IRepository<Autor> {
 
     @Override
     public Autor getById(Long id) throws SQLException {
-        System.out.println("Entro al get by id");
         Autor autor = null;
 
         try(PreparedStatement stms=
@@ -49,7 +48,6 @@ public class AutoresRepository implements IRepository<Autor> {
                 }
             }
         }
-        System.out.println("Si esta entrando al getById: "+autor);
         return autor;
     }
 
@@ -81,8 +79,6 @@ public class AutoresRepository implements IRepository<Autor> {
                 stmt.setString(4,autor.getDescripcion());
             }stmt.executeUpdate();
         }
-
-
     }
 
     @Override
@@ -93,11 +89,9 @@ public class AutoresRepository implements IRepository<Autor> {
             stmt.setLong(1,id);
             stmt.executeUpdate();
         }
-
     }
 
     //Mapear, transformar un renglon, fila, registro, row en un objeto de tipo chofer
-
     private Autor getAutor(ResultSet rs) throws SQLException{
         Autor a= new Autor();
 

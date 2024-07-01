@@ -46,7 +46,7 @@ public class AltaAutorServlet extends HttpServlet {
             errores.put("licencia","la licencia es requerida es requerido!");
         }
         if(errores.isEmpty()){
-                Autor autor = new Autor();
+            Autor autor = new Autor();
 
             autor.setId(0L);
             autor.setNombre(nombre);

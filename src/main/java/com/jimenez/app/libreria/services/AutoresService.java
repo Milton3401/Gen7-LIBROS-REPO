@@ -30,7 +30,7 @@ public class AutoresService implements IService<Autor>{
     @Override
     public Optional getById(Long id) {
         try{
-            return Optional.ofNullable(autoresRepo.getById(id));//Revisamos si existe un chofer, en caso de noser asi pasa al catch
+            return Optional.ofNullable(autoresRepo.getById(id));
 
         }catch (SQLException e ){
             throw new RuntimeException(e.getMessage(),e.getCause());
