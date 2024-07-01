@@ -60,7 +60,7 @@ public class ResponsablesRepository implements IRepository<Responsable>{
                     "direccion=?, turno=?" +
                     " where id_responsable=?";
         }else{
-            sql="insert into choferes (id_responsable,nombre," +
+            sql="insert into responsables (id_responsable,nombre," +
                     "apellido_paterno,apellido_materno,email,telefono,direccion,turno)" +
                     "values(SEQUENCE4.NEXTVAL,?,?,?,?,?,?,?)";
         }
@@ -83,7 +83,6 @@ public class ResponsablesRepository implements IRepository<Responsable>{
                 stmt.setString(5, responsable.getTelefono());
                 stmt.setString(6, responsable.getDireccion());
                 stmt.setString(7, responsable.getTurno());
-                stmt.setLong(8, responsable.getId());
             }stmt.executeUpdate();
         }
     }
