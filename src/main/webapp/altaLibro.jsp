@@ -20,6 +20,41 @@ List<Categoria> categorias =  (List<Categoria>) request.getAttribute("categorias
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .contenedor {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+        }
+        .cargando {
+            display: flex;
+            align-items: center;
+        }
+        .pelotas {
+            width: 10px;
+            height: 10px;
+            margin: 5px;
+            background-color: #000;
+            border-radius: 50%;
+            animation: bounce 0.5s infinite alternate;
+        }
+        .pelotas:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .pelotas:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes bounce {
+            to {
+                transform: translateX(-20px);
+            }
+        }
+        .texto-cargando {
+            margin-left: 10px;
+            font-size: 16px;
+        }
+    </style>
 
 
 </head>
@@ -74,63 +109,76 @@ List<Categoria> categorias =  (List<Categoria>) request.getAttribute("categorias
 </nav>
 
 <div class="container body-content">
-    <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCWeeateTaYGqsHhNcmoDfT7Us-vLDZVPs&amp;sensor=false&amp;language=en"></script>
-     <div class="row">
+    <div class="row">
          <div class="col-md-12">
              <h2>Iniciar Ruta</h2>
          </div>
-         <!-- <div style="display: block;"><input type="text" name="" id="txtEsOD"></div> -->
+         <div style="display: block;"><input type="text" name="" id="txtEsOD" ></div>
 
      </div>
 
      <div class="row">
+        <form action="<%=request.getContextPath()%>/libros/alta" method="post">
          <div class="col-md-6">
             <div class="form-group">
-                <label for="">AUTORES</label>
-                <div class="col-md-3">
-                    <button class="btn btn-primary btn-xs" style="margin-top: 30px;" onclick="registrarAutor()">Registrar Nuevo Autor</button>
-                </div>
-                <select name="autor" id="autor" class="form-control">
-                    <option value="" >SELECCIONAR AUTOR</option>
-                    <% for(Autor c: autores){ %>
-                        <option value="<%=c.getId()%>"><%=c.getNombre()%></option>
+                <label for="autor">AUTORES</label>
+                <select name="autorId" id="autorId" class="form-control">
+                    <option value="">SELECCIONAR AUTOR</option>
+                    <% for (Autor c : autores) { %>
+                        <option value="<%= c.getId() %>"><%= c.getNombre() + " " + c.getApPaterno() + " " + c.getApMaterno() %></option>
                     <% } %>
-                </select>
+                </select>   
+                <button class="btn btn-primary btn-xs" style="margin-top: 30px;" onclick="registrarAutor()">Registar Autor</button>             
             </div>
 
             <div class="form-group">
                 <div class="form-group">
-                    <label for="">NOMBRE DEL LIBRO</label>
-                    <input type="text" name="titulo" id="titulo" class="form-control">
+                    <label for="" style="margin-top: 35px;">NOMBRE DEL LIBRO</label>
+                    <input type="text" name="titulo" id="titulo" class="form-control" required>
                 </div>
             </div>
+
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="">Stock</label>
+                    <input type="number" name="stock" id="stock" class="form-control" required>
+                </div>
+            </div>
+
+
          </div>
+
         
         <div class="col-md-6">
             <div class="form-group">
-                <label for="">CATEGORIA </label>
-
-                <select name="categoria" id="categoria" class="form-control">
-                    <option value="" >SELECCIONAR CATEGORIA</option>
-                    <% for(Categoria c: categorias){ %>
-                        <option value="<%=c.getId()%>"><%=c.getCategoria()%></option>
+                <label for="categoria">CATEGORÍA</label>
+                <select name="categoriaId" id="categoriaId" class="form-control" required>
+                    <option value="">SELECCIONAR CATEGORÍA</option>
+                    <% for (Categoria c : categorias) { %>
+                        <option value="<%= c.getId() %>"><%= c.getCategoria() %></option>
                     <% } %>
-                </select>
+                </select>                
             </div> 
             
             <div class="form-group">
                 <div class="form-group">
                     <label for="anoPublicacion">Año de Publicacion</label>
-                    <input class="form-control" type="number" id="year" name="year" min="1900" max="2100" step="1">
+                    <input class="form-control" type="number" id="year" min="1900" max="2100" step="1" name="anoPublicacion" id="anoPublicacion" required>
                 </div>
-
-
                 <div class="form-group">
-                    <button class="btn btn-success">Registrar Libro</button>
+                    <div class="form-group">
+                        <label for="">Identificador Unico Del Libro (ISBN)</label>
+                        <input type="text" name="isbn" id="isbn" class="form-control" >
+                    </div>
+                    <button class="btn btn-primary btn-xs" style="margin-top: 15px;" onclick="generarISBN13()" required>Generar ISBN-13</button>
                 </div>
+            </div>
+            <div class="form-group">
+                <button  type="submit" class="btn btn-success">Registrar Libro</button>
             </div>
         </div>
      </div>
+    </form>
 
      <div class="modal fade" id="myModal" role="dialog">
 
@@ -197,16 +245,72 @@ List<Categoria> categorias =  (List<Categoria>) request.getAttribute("categorias
     </div>
 
      <script>
-        function registrarAutor() {
-            $('#myModal').modal('show'); 
+
+        function LimpiarDatos(){
+            $("#Nombre").val("");
+            $("#apPaterno").val("");
+            $("#apMaterno").val("");
+            $("#Descripcion").val("");
+
         }
 
-        function btnGuardarDir() {
-            var nombre = $('#Nombre').val();
-            var apPaterno = $('#apPaterno').val();
-            var apMaterno = $('#apMaterno').val();
-            var descripcion = $('#Descripcion').val();
+        function registrarAutor() {
+            $('#myModal').modal('show'); 
+            $("#txtEsOD").val(fuente);
         }
+
+        function btnGuardarDir(){
+            //Recuperamos la direccion
+            var nombre = $("#Nombre").val();
+            var apPaterno = $("#apPaterno").val();
+            var apMaterno = $("#apMaterno").val();
+            var descripcion = $("#Descripcion").val();
+
+            //HACER LA PETICION a mi Api, mandandole los valores de las cajas
+            $.ajax({
+                type:'POST',
+                url:"http://localhost:8080/Gen7-ProyectoApi/api/autores",
+                data:{ "nombre":nombre, "apPaterno":apPaterno, "apMaterno": apMaterno,"descripcion":descripcion},
+                    //espera la respuesta del servidor
+                    success:function(resp){
+                        //Mosrtar la respuesta
+                        console.log(resp);
+                        //habiliatar el boton
+                        $('#myModal').modal('hide');
+                            if($("#txtEsOD").val()==1){
+                              $("#idOrigen").val(resp.message);
+                          }else{//es destino
+                              $("#idDestino").val(resp.message);
+                         }
+                    }
+            });
+        }
+       
+        function generarISBN13() {
+            let isbn = '978'; 
+            let suma = 0;
+            for (let i = 0; i < 9; i++) {
+                const digito = Math.floor(Math.random() * 10);
+                isbn += digito;
+                suma += digito * (i % 2 === 0 ? 1 : 3);
+            }
+            let digitoControl = 10 - (suma % 10);
+            if (digitoControl === 10) {
+                digitoControl = 0;
+            }
+            isbn += digitoControl;
+
+            // Establecer el valor del ISBN generado en el campo de texto
+            document.getElementById('isbn').value = isbn;
+        }
+
+        document.getElementById("btnGuardar").addEventListener('click', function () {
+                    document.getElementById('cargando').style.display = 'flex';
+
+                    setTimeout(function () {
+                        document.getElementById('cargando').style.display = 'none';
+                    }, 6000);
+                });       
      </script>
 </div>
 </body>

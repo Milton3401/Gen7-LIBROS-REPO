@@ -8,6 +8,8 @@ public class Libro {
 
     private Long autorId;
 
+    private  Long categoriaId;
+
     private Long anoPublicacion;
 
     private String isbn;
@@ -61,5 +63,13 @@ public class Libro {
 
     public void setStock(Long stock) {
         this.stock = stock;
+    }
+
+    public Long getCategoriaId() {
+        return categoriaId;
+    }
+
+    public void setCategoriaId(Long categoriaId) {
+        this.categoriaId = categoriaId;
     }
 }

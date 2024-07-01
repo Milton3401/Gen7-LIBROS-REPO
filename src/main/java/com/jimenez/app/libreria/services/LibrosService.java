@@ -21,7 +21,7 @@ public class LibrosService implements ILibrosService{
     public LibrosService(Connection connection){
         this.autoresRepo = new AutoresRepository(connection);
         this.categoriasRepo = new CategoriasRepository(connection);
-
+        this.librosRepo = new LibrosRepository(connection);
     }
 
 
@@ -57,7 +57,12 @@ public class LibrosService implements ILibrosService{
 
     @Override
     public List<Libro> listar() {
-        return List.of();
+        try{
+            return librosRepo.listar();
+
+        }catch (SQLException e ){
+            throw new RuntimeException(e.getMessage(),e.getCause());
+        }
     }
 
     @Override
@@ -67,6 +72,12 @@ public class LibrosService implements ILibrosService{
 
     @Override
     public void guardar(Libro libro) {
+        try{
+            librosRepo.guardar(libro);
+
+        }catch (SQLException e ){
+            throw new RuntimeException(e.getMessage(),e.getCause());
+        }
 
     }
 
