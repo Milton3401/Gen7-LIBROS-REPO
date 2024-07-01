@@ -1,6 +1,6 @@
 package com.jimenez.app.libreria.models;
 
-public class Libros {
+public class Libro {
 
     private Long id;
 
@@ -13,6 +13,7 @@ public class Libros {
     private String isbn;
 
     private Long stock;
+
 
     public Long getId() {
         return id;

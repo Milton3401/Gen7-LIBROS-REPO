@@ -57,8 +57,7 @@ public class CategoriasRepository implements IRepository<Categoria>{
         Categoria a= new Categoria();
 
         a.setId(rs.getLong("ID_CATEGORIA"));
-        a.setCategoria(rs.getString("CATEGORIA"));
-
+        a.setCategoria(rs.getString("NOMBRE_CATEGORIA"));
         return a;
     }
 }

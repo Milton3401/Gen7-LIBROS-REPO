@@ -28,6 +28,6 @@ public class ListarCategoriasServlet extends HttpServlet {
         List<Categoria> categorias=service.listar();
 
         req.setAttribute("categorias", categorias);
-        //getServletContext().getRequestDispatcher("/listaAutores.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/listaCategoria.jsp").forward(req, resp);
     }
 }
