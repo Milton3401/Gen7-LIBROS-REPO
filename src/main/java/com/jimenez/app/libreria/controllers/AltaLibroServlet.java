@@ -47,13 +47,6 @@ public class AltaLibroServlet extends HttpServlet {
         String isbn = req.getParameter("isbn");
         String stock = req.getParameter("stock");
 
-        System.out.println(titulo);
-        System.out.println(autorId);
-        System.out.println(categoriaId);
-        System.out.println(anoPublicacion);
-        System.out.println(isbn);
-        System.out.println(stock);
-
         Long autorIdLong = Long.parseLong(autorId);
         Long categoriaIdLong = Long.parseLong(categoriaId);
         Long anoPublicacionLong = Long.parseLong(anoPublicacion);

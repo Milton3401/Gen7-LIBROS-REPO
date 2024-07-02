@@ -56,8 +56,8 @@ public class AutoresRepository implements IRepository<Autor> {
         String sql="";
 
         if(autor.getId()!= null && autor.getId()>0){
-            sql="update autores set nombre=?, ap_paterno=?, " +
-                    "ap_materno=?, descripcion=?" +
+            sql="update autores set nombre=?, apellido_paterno=?, " +
+                    "apellido_materno=?, descripcion=?" +
                     " where id_autor=?";
         }else{
             sql="insert into autores (ID_AUTOR,NOMBRE," +

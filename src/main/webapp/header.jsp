@@ -29,8 +29,8 @@
                        aria-haspopup="true" aria-expanded="false">Camiones<span
                            class="caret"></span></a>
                    <ul class="dropdown-menu">
-                       <li><a href="<%=request.getContextPath()%>/usuarios/listar">Lista Usuarios</a></li>
-                       <li><a href="<%=request.getContextPath()%>/usuarios/alta">Lista Usuarios</a></li>
+                       <li><a href="<%=request.getContextPath()%>/responsables/listar">Lista Trabajadores</a></li>
+                       <li><a href="<%=request.getContextPath()%>/responsables/alta">Alta Trabajadores</a></li>
                    </ul>
                </li>
 
@@ -39,7 +39,8 @@
                        aria-haspopup="true" aria-expanded="false">Libros Rentados<span
                            class="caret"></span></a>
                    <ul class="dropdown-menu">
-                       <li><a href="<%=request.getContextPath()%>/rentas/alta">Alta Ruta</a></li>
+                       <li><a href="<%=request.getContextPath()%>/libros/alta">Alta Libros</a></li>
+                       <li><a href="<%=request.getContextPath()%>/libros/listar">Listar Libros</a></li>
                    </ul>
                </li>
            </ul>

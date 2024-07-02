@@ -1,5 +1,6 @@
 package com.jimenez.app.libreria.repositories;
 
+import com.jimenez.app.libreria.models.DTO.LibroDTO;
 import com.jimenez.app.libreria.models.Libro;
 import jakarta.servlet.SessionTrackingMode;
 
@@ -93,6 +94,35 @@ public class LibrosRepository implements ILibrosRepository{
         a.setIsbn(rs.getString("ISBN"));
         a.setStock(rs.getLong("STOCK"));
         return a;
+    }
+
+    private LibroDTO getLibroDTO(ResultSet rs) throws SQLException{
+        LibroDTO a= new LibroDTO();
+        a.setId(rs.getLong("ID_LIBRO"));
+        a.setTitulo(rs.getString("TITULO"));
+        a.setNombreAutor(rs.getString("NOMBRE_AUTOR_COMPLETO"));
+        a.setNombreCategoria(rs.getString("NOMBRE_CATEGORIA"));
+        a.setAnio(rs.getLong("ANO_PUBLICACION"));
+        a.setISBN(rs.getString("ISBN"));
+        return a;
+    }
+
+    public List<LibroDTO> listaLibroDTO(){
+        List<LibroDTO> libroDTOS = new ArrayList<>();
+        String sql="SELECT L.ID_LIBRO AS ID_LIBRO, L.TITULO AS TITULO, A.NOMBRE || ' ' || A.APELLIDO_PATERNO || ' ' || A.APELLIDO_MATERNO AS NOMBRE_AUTOR_COMPLETO, " +
+                "C.NOMBRE_CATEGORIA AS NOMBRE_CATEGORIA, L.ANO_PUBLICACION AS ANO_PUBLICACION, L.ISBN AS ISBN " +
+                "FROM LIBROS L JOIN AUTORES A ON L.AUTOR_ID = A.ID_AUTOR JOIN CATEGORIAS C ON L.CATEGORIA_ID = C.ID_CATEGORIA";
+
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs=stmt.executeQuery(sql)){
+            while (rs.next()){
+                LibroDTO a = this.getLibroDTO(rs);
+                libroDTOS.add(a);
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return libroDTOS;
     }
 
 }

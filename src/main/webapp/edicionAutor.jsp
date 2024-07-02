@@ -40,7 +40,7 @@ Map<String, String> errores = (Map<String, String>) request.getAttribute("errore
         <% } %>
 
         <div class="row">
-            <form action="<%=request.getContextPath()%>/autores/alta" method="post">
+            <form action="<%=request.getContextPath()%>/autores/editar" method="post">
             <input type="hidden" name="id" value="<%=autor.getId()%>">
                 <div class="col-md-12">
                     <div class="form-group">

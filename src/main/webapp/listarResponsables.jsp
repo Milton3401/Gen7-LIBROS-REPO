@@ -63,6 +63,7 @@ List<Responsable> responsables =  (List<Responsable>) request.getAttribute("resp
                                     <td><%=c.getNombre()%></td>
                                     <td><%=c.getApPaterno()%></td>
                                     <td><%=c.getApMaterno()%></td>
+                                    <td><%=c.getEmail()%></td>
                                     <td><%=c.getTelefono()%></td>
                                     <td><%=c.getDireccion()%></td>
                                     <td><%=c.getTurno()%></td>

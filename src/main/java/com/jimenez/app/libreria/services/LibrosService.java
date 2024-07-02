@@ -2,9 +2,11 @@ package com.jimenez.app.libreria.services;
 
 import com.jimenez.app.libreria.models.Autor;
 import com.jimenez.app.libreria.models.Categoria;
+import com.jimenez.app.libreria.models.DTO.LibroDTO;
 import com.jimenez.app.libreria.models.Libro;
 import com.jimenez.app.libreria.repositories.*;
 
+import java.security.PublicKey;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -84,5 +86,12 @@ public class LibrosService implements ILibrosService{
     @Override
     public void eliminar(Long id) {
 
+    }
+    public List<LibroDTO> listaLibroDTO(){
+        try{
+            return librosRepo.listaLibroDTO();
+        }catch (SQLException e ){
+            throw new RuntimeException(e.getMessage(),e.getCause());
+        }
     }
 }

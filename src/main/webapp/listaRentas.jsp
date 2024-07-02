@@ -4,7 +4,7 @@
 <%@page import="com.jimenez.app.libreria.models.DTO.*" %>
 
 <%
-List<LibroDTO> librosDTO =  (List<LibroDTO>) request.getAttribute("libros");
+List<RentaDTO> rentasDTO =  (List<RentaDTO>) request.getAttribute("rentasDTO");
 %>
 
 <!DOCTYPE html>
@@ -32,8 +32,8 @@ List<LibroDTO> librosDTO =  (List<LibroDTO>) request.getAttribute("libros");
             </div>
 
             <div class="col-6">
-                <a href="<%=request.getContextPath()%>/autores/alta"
-                    class="btn btn-success">Alta Autor</a>
+                <a href="<%=request.getContextPath()%>/renta/alta"
+                    class="btn btn-success">Rentar Un Libro</a>
             </div>
         </div>
 
@@ -44,22 +44,26 @@ List<LibroDTO> librosDTO =  (List<LibroDTO>) request.getAttribute("libros");
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Nombre Del Autor</th>
-                                <th>Categoria</th>
-                                <th>Categoria</th>
-                                <th>Año de Publicacion</th>
-                                <th>ISBN</th>
+                                <th>Cliente</th>
+                                <th>Titulo</th>
+                                <th>Responsable De Renta</th>
+                                <th>Fecha de Renta</th>
+                                <th>Fecha de Entrega</th>
+                                <th>Estado</th>
+                                <th>Precio de Renta</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% for(LibroDTO libro : librosDTO){ %>
+                            <% for(RentaDTO renta : rentasDTO){ %>
                                 <tr>
-                                    <td><%=libro.getId()%></td>
-                                    <td><%=libro.getTitulo()%></td>
-                                    <td><%=libro.getNombreAutor()%></td>
-                                    <td><%=libro.getNombreCategoria()%></td>
-                                    <td><%=libro.getAnio()%></td>
-                                    <td><%=libro.getISBN()%></td>
+                                    <td><%=renta.getRentaId()%></td>
+                                    <td><%=renta.getNombreUsuario()%></td>
+                                    <td><%=renta.getTitulo()%></td>
+                                    <td><%=renta.getNombreResponsable()%></td>
+                                    <td><%=renta.getFechaRenta()%></td>
+                                    <td><%=renta.getFechaDevolucion()%></td>
+                                    <td><%=renta.getEstado()%></td>
+                                    <td><%=renta.getPrecio()%></td>
                                 </tr>
                                 <% } %>
                         </tbody>

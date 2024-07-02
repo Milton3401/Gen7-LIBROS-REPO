@@ -1,10 +1,9 @@
 package com.jimenez.app.libreria.controllers;
 
 import com.jimenez.app.libreria.models.DTO.LibroDTO;
-import com.jimenez.app.libreria.models.Libro;
-import com.jimenez.app.libreria.services.ILibrosService;
-import com.jimenez.app.libreria.services.IService;
+import com.jimenez.app.libreria.models.DTO.RentaDTO;
 import com.jimenez.app.libreria.services.LibrosService;
+import com.jimenez.app.libreria.services.RentasService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,8 +14,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
 
-@WebServlet("/libros/listar")
-public class ListarLibrosServlet extends HttpServlet {
+@WebServlet("/rentas/listar")
+public class ListarRentasServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,14 +24,13 @@ public class ListarLibrosServlet extends HttpServlet {
         Connection conn= (Connection) req.getAttribute("conn");
 
         //Declaramos un objeto de tipo servicio
-        LibrosService service = new LibrosService(conn);
-        List<LibroDTO> librosDTO =service.listaLibroDTO();
+        RentasService service = new RentasService(conn);
+        List<RentaDTO> rentasDTO =service.listaRentaDTO();
 
-        for (LibroDTO libro : librosDTO){
-            System.out.println(libro.getNombreAutor());
+        for (RentaDTO renta : rentasDTO){
+            System.out.println(renta.getFechaRenta());
         }
-        req.setAttribute("libros", librosDTO);
-        getServletContext().getRequestDispatcher("/listaLibros.jsp").forward(req, resp);
-
+        req.setAttribute("rentasDTO", rentasDTO);
+        getServletContext().getRequestDispatcher("/listaRentas.jsp").forward(req, resp);
     }
 }

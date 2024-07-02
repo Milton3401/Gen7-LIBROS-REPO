@@ -35,7 +35,6 @@ public class DetalleAutorServlet extends HttpServlet {
             if(o.isPresent()){
 
                 autor=o.get();
-                System.out.println("yA SE ESTA MANDANDO EL AUTOR");
                 req.setAttribute("autor",autor);
                 getServletContext().getRequestDispatcher("/detalleAutor.jsp")
                         .forward(req,resp);

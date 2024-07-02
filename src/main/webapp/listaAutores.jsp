@@ -2,6 +2,7 @@
 <%@page import="java.util.*" %>
 <%@page import="com.jimenez.app.libreria.models.*" %>
 
+
 <%
 List<Autor> autores =  (List<Autor>) request.getAttribute("autores");
 %>
