@@ -93,10 +93,12 @@ List<Usuario> usuarios =  (List<Usuario>) request.getAttribute("usuarios");
 
                     <div class="form-group">
                         <label for="responsable">Trabajador en turno</label>
-                        <select name="responsable" id="responsable" class="form-control" onchange="actualizarOrigen()">
+                        <select  name="responsable" id="responsable" class="form-control">
                             <option value="" data-direccion="">SELECCIONAR</option>
                             <% for (Responsable c : responsables) { %>
-                                <option value="<%=c.getId()%>"><%=c.getNombre()%></option>
+                                <option value="<%= c.getId() %>">
+                                    <%= c.getNombre() + " " + c.getApPaterno() + " " + c.getApMaterno()%>
+                                </option>
                             <% } %>
                         </select>
                     </div>
@@ -113,12 +115,14 @@ List<Usuario> usuarios =  (List<Usuario>) request.getAttribute("usuarios");
                     <div class="form-group">
                         <label for="">Usuario</label>
 
-                        <select name="usuario" id="usuario" class="form-control">
-                            <option value="">SELECCIONAR</option>
-                            <% for(Usuario c: usuarios){ %>
-                                <option value="<%=c.getId()%>"><%=c.getNombre()%></option>
-                            <% } %>
-                        </select>
+                    <select name="usuario" id="usuario" class="form-control">
+                        <option value="">SELECCIONAR</option>
+                        <% for(Usuario c: usuarios){ %>
+                            <option value="<%=c.getId()%>">
+                                <%= c.getNombre() + " " +c.getApellido() %>
+                            </option>
+                        <% } %>
+                    </select>
 
                     </div>
 
