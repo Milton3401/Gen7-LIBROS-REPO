@@ -2,7 +2,7 @@
 <%@page import="java.util.*" %>
 <%@page import="com.jimenez.app.libreria.models.*" %>
 <%
-Responsable responsable = (Responsable) request.getAttribute("responsable");
+Usuario usuario = (Usuario) request.getAttribute("usuario");
 Map<String, String> errores = (Map<String, String>) request.getAttribute("errores");
 %>
 
@@ -26,7 +26,7 @@ Map<String, String> errores = (Map<String, String>) request.getAttribute("errore
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2>Formulario Editar Informacion Trabajador</h2>
+                <h2>Formulario Edicion Usuario</h2>
             </div>
         </div>
 
@@ -40,12 +40,12 @@ Map<String, String> errores = (Map<String, String>) request.getAttribute("errore
         <% } %>
 
         <div class="row">
-            <form action="<%=request.getContextPath()%>/responsables/editar" method="post">
-            <input type="hidden" name="id" value="<%=responsable.getId()%>">
+            <form action="<%=request.getContextPath()%>/usuarios/editar" method="post">
+            <input type="hidden" name="id" value="<%=usuario.getId()%>">
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="">Nombre</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control" value="<%=responsable.getNombre() !=null? responsable.getNombre(): ""%>">
+                        <input type="text" name="nombre" id="nombre" class="form-control" value="<%=usuario.getNombre() !=null? usuario.getNombre(): ""%>">
                         <%
                             if (errores != null && errores.containsKey("nombre")){
                                 out.println("<span class='text-danger'>"+ errores.get("nombre")+"</span>");
@@ -54,28 +54,18 @@ Map<String, String> errores = (Map<String, String>) request.getAttribute("errore
                     </div>
 
                     <div class="form-group">
-                        <label for="">Apellido Paterno</label>
-                        <input type="text" name="apPaterno" id="apPaterno" class="form-control" value="<%=responsable.getApPaterno() !=null? responsable.getApPaterno(): ""%>">
+                        <label for="">Apellidos </label>
+                        <input type="text" name="apellido" id="apellido" class="form-control" value="<%=usuario.getApellido() !=null? usuario.getApellido(): ""%>">
                         <%
-                            if (errores != null && errores.containsKey("apPaterno")){
-                                out.println("<span class='text-danger'>"+ errores.get("apPaterno")+"</span>");
-                            }
-                        %>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="">Apellido Materno</label>
-                        <input type="text" name="apMaterno" id="apMaterno" class="form-control" value="<%=responsable.getApMaterno() !=null? responsable.getApMaterno(): ""%>">
-                        <%
-                            if (errores != null && errores.containsKey("apMaterno")){
-                                out.println("<span class='text-danger'>"+ errores.get("apMaterno")+"</span>");
+                            if (errores != null && errores.containsKey("apellido")){
+                                out.println("<span class='text-danger'>"+ errores.get("apellido")+"</span>");
                             }
                         %>
                     </div>
 
                     <div class="form-group">
                         <label for="">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" value="<%=responsable.getEmail() !=null? responsable.getEmail(): ""%>">
+                        <input type="text" name="email" id="email" class="form-control" value="<%=usuario.getEmail() !=null? usuario.getEmail(): ""%>">
                         <%
                             if (errores != null && errores.containsKey("email")){
                                 out.println("<span class='text-danger'>"+ errores.get("email")+"</span>");
@@ -85,7 +75,7 @@ Map<String, String> errores = (Map<String, String>) request.getAttribute("errore
 
                     <div class="form-group">
                         <label for="">Telefono</label>
-                        <input type="text" name="telefono" id="telefono" class="form-control" value="<%=responsable.getTelefono() !=null? responsable.getTelefono(): ""%>">
+                        <input type="text" name="telefono" id="telefono" class="form-control" value="<%=usuario.getTelefono() !=null? usuario.getTelefono(): ""%>">
                         <%
                             if (errores != null && errores.containsKey("telefono")){
                                 out.println("<span class='text-danger'>"+ errores.get("telefono")+"</span>");
@@ -94,25 +84,14 @@ Map<String, String> errores = (Map<String, String>) request.getAttribute("errore
                     </div>
 
                     <div class="form-group">
-                        <label for="">Direccion</label>
-                        <input type="text" name="direccion" id="direccion" class="form-control" value="<%=responsable.getDireccion() !=null? responsable.getDireccion(): ""%>">
+                        <label for="">Direcccion</label>
+                        <input type="text" name="direccion" id="direccion" class="form-control" value="<%=usuario.getDireccion() !=null? usuario.getDireccion(): ""%>">
                         <%
                             if (errores != null && errores.containsKey("direccion")){
                                 out.println("<span class='text-danger'>"+ errores.get("direccion")+"</span>");
                             }
                         %>
                     </div>
-
-                    <div class="form-group">
-                        <label for="">Turno</label>
-                        <input type="text" name="turno" id="turno" class="form-control" value="<%=responsable.getTurno() !=null? responsable.getTurno(): ""%>">
-                        <%
-                            if (errores != null && errores.containsKey("turno")){
-                                out.println("<span class='text-danger'>"+ errores.get("turno")+"</span>");
-                            }
-                        %>
-                    </div>
-
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">Guardar</button>
                     </div>

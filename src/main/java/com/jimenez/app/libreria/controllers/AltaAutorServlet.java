@@ -43,7 +43,7 @@ public class AltaAutorServlet extends HttpServlet {
             errores.put("apMaterno","el apellido materno es requerido!");
         }
         if(descripcion==null || descripcion.isBlank()){
-            errores.put("licencia","la licencia es requerida es requerido!");
+            errores.put("descripcion","la descripcion es requerida es requerida!");
         }
         if(errores.isEmpty()){
             Autor autor = new Autor();

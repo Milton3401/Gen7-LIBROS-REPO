@@ -2,7 +2,6 @@ package com.jimenez.app.libreria.controllers;
 
 
 import com.jimenez.app.libreria.models.Libro;
-import com.jimenez.app.libreria.repositories.ILibrosRepository;
 import com.jimenez.app.libreria.services.ILibrosService;
 import com.jimenez.app.libreria.services.IService;
 import com.jimenez.app.libreria.services.LibrosService;
@@ -14,9 +13,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,6 +47,13 @@ public class AltaLibroServlet extends HttpServlet {
         Long categoriaIdLong = Long.parseLong(categoriaId);
         Long anoPublicacionLong = Long.parseLong(anoPublicacion);
         Long stockLong = Long.parseLong(stock);
+
+        System.out.println(titulo);
+        System.out.println(autorIdLong);
+        System.out.println(categoriaIdLong);
+        System.out.println(anoPublicacionLong);
+        System.out.println(isbn);
+        System.out.println(stockLong);
 
 
         Map<String, String> errores = new HashMap<>();

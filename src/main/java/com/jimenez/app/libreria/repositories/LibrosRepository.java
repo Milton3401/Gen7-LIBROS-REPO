@@ -2,6 +2,7 @@ package com.jimenez.app.libreria.repositories;
 
 import com.jimenez.app.libreria.models.DTO.LibroDTO;
 import com.jimenez.app.libreria.models.Libro;
+import com.jimenez.app.libreria.models.Usuario;
 import jakarta.servlet.SessionTrackingMode;
 
 import java.sql.*;
@@ -41,7 +42,19 @@ public class LibrosRepository implements ILibrosRepository{
 
     @Override
     public Libro getById(Long id) throws SQLException {
-        return null;
+        Libro libro = null;
+
+        try(PreparedStatement stms=
+                    conn.prepareStatement("SELECT * FROM LIBROS WHERE ID_LIBRO=?")){
+            stms.setLong(1,id);
+            try(ResultSet rs = stms.executeQuery()){
+                if(rs.next()){
+                    libro=this.getLibro(rs);
+                }else{
+                }
+            }
+        }
+        return libro;
     }
 
     @Override

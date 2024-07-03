@@ -1,10 +1,7 @@
 package com.jimenez.app.libreria.services;
 
-import com.jimenez.app.libreria.models.Autor;
-import com.jimenez.app.libreria.models.Categoria;
-import com.jimenez.app.libreria.models.DTO.LibroDTO;
+import com.jimenez.app.libreria.models.*;
 import com.jimenez.app.libreria.models.DTO.RentaDTO;
-import com.jimenez.app.libreria.models.Renta;
 import com.jimenez.app.libreria.repositories.*;
 
 import java.sql.Connection;
@@ -14,19 +11,25 @@ import java.util.Optional;
 
 public class RentasService implements IRentasService{
 
-    private IRepository<Autor> autoresRepo;
-    private IRepository<Categoria> categoriasRepo;
+    private IRepository<Libro> librosRepo;
+    private IRepository<Responsable> responsableRepo;
+    private IRepository<Usuario> usuariosRepo;
     private IRentasRespository rentasRepo;
 
     public RentasService(Connection connection){
-        this.autoresRepo = new AutoresRepository(connection);
-        this.categoriasRepo = new CategoriasRepository(connection);
+        this.librosRepo = new LibrosRepository(connection);
+        this.responsableRepo = new ResponsablesRepository(connection);
+        this.usuariosRepo= new UsuariosRepository(connection);
         this.rentasRepo = new RentasRespository(connection);
     }
     @Override
     public List<Renta> listar() {
+        try{
+            return rentasRepo.listar();
 
-        return null;
+        }catch (SQLException e ){
+            throw new RuntimeException(e.getMessage(),e.getCause());
+        }
     }
 
     @Override
@@ -55,5 +58,40 @@ public class RentasService implements IRentasService{
         }catch (SQLException e ){
             throw new RuntimeException(e.getMessage(),e.getCause());
         }
+    }
+
+    @Override
+    public List<Libro> listarLibros() {
+        try{
+            return librosRepo.listar();
+
+        }catch (SQLException e ){
+            throw new RuntimeException(e.getMessage(),e.getCause());
+        }
+    }
+
+    @Override
+    public List<Responsable> listarReponsable() {
+        try{
+            return responsableRepo.listar();
+
+        }catch (SQLException e ){
+            throw new RuntimeException(e.getMessage(),e.getCause());
+        }
+    }
+
+    @Override
+    public List<Usuario> listarUsuario() {
+        try{
+            return usuariosRepo.listar();
+
+        }catch (SQLException e ){
+            throw new RuntimeException(e.getMessage(),e.getCause());
+        }
+    }
+
+    @Override
+    public Long guardarReturnId(Libro libro) {
+        return 0l;
     }
 }

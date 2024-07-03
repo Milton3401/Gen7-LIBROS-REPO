@@ -11,4 +11,5 @@ public interface ILibrosRepository extends IRepository<Libro> {
     Long guardarReturnId(Libro libro) throws SQLException;
 
     List<LibroDTO> listaLibroDTO() throws SQLException;
+
 }

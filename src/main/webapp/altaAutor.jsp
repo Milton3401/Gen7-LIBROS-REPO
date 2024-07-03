@@ -72,7 +72,7 @@ Map<String, String> errores = (Map<String, String>) request.getAttribute("errore
                     </div>
 
                     <div class="form-group">
-                        <label for="">Licencia</label>
+                        <label for="">Descripcion Breve del Autor</label>
                         <input type="text" name="descripcion" id="descripcion" class="form-control" value="${param.descripcion}">
                         <%
                             if (errores != null && errores.containsKey("descripcion")){

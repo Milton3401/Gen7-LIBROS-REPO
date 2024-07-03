@@ -1,8 +1,8 @@
 package com.jimenez.app.libreria.controllers;
 
+import com.jimenez.app.libreria.models.Autor;
 import com.jimenez.app.libreria.models.DTO.LibroDTO;
 import com.jimenez.app.libreria.models.Libro;
-import com.jimenez.app.libreria.services.ILibrosService;
 import com.jimenez.app.libreria.services.IService;
 import com.jimenez.app.libreria.services.LibrosService;
 import jakarta.servlet.ServletException;
@@ -28,10 +28,11 @@ public class ListarLibrosServlet extends HttpServlet {
         LibrosService service = new LibrosService(conn);
         List<LibroDTO> librosDTO =service.listaLibroDTO();
 
-        for (LibroDTO libro : librosDTO){
-            System.out.println(libro.getNombreAutor());
-        }
+        IService<Libro> service2 = new LibrosService(conn);
+        List<Libro> libros=service2.listar();
+
         req.setAttribute("libros", librosDTO);
+        req.setAttribute("libros2",libros);
         getServletContext().getRequestDispatcher("/listaLibros.jsp").forward(req, resp);
 
     }

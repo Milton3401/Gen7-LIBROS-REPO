@@ -26,13 +26,23 @@
 
                <li class="dropdown">
                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                       aria-haspopup="true" aria-expanded="false">Camiones<span
+                       aria-haspopup="true" aria-expanded="false">Trabajadores<span
                            class="caret"></span></a>
                    <ul class="dropdown-menu">
                        <li><a href="<%=request.getContextPath()%>/responsables/listar">Lista Trabajadores</a></li>
                        <li><a href="<%=request.getContextPath()%>/responsables/alta">Alta Trabajadores</a></li>
                    </ul>
                </li>
+
+                <li class="dropdown">
+                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">Usuarios<span
+                           class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                       <li><a href="<%=request.getContextPath()%>/usuarios/alta">Alta Usuarios</a></li>
+                       <li><a href="<%=request.getContextPath()%>/usuarios/listar">Listar Usuarios</a></li>
+                   </ul>
+                </li>
 
                <li class="dropdown">
                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -41,6 +51,16 @@
                    <ul class="dropdown-menu">
                        <li><a href="<%=request.getContextPath()%>/libros/alta">Alta Libros</a></li>
                        <li><a href="<%=request.getContextPath()%>/libros/listar">Listar Libros</a></li>
+                   </ul>
+               </li>
+
+               <li class="dropdown">
+                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                       aria-haspopup="true" aria-expanded="false">Rentas Existentes<span
+                           class="caret"></span></a>
+                   <ul class="dropdown-menu">
+                       <li><a href="<%=request.getContextPath()%>/rentas/alta">Alta Rentas</a></li>
+                       <li><a href="<%=request.getContextPath()%>/rentas/listar">Listar Rentas</a></li>
                    </ul>
                </li>
            </ul>

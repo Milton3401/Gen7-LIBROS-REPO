@@ -5,6 +5,7 @@
 
 <%
 List<LibroDTO> librosDTO =  (List<LibroDTO>) request.getAttribute("libros");
+List<Libro> libros =  (List<Libro>) request.getAttribute("libros2");
 %>
 
 <!DOCTYPE html>
@@ -28,12 +29,12 @@ List<LibroDTO> librosDTO =  (List<LibroDTO>) request.getAttribute("libros");
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <h2>Listado de Autores</h2>
+                <h2>Listado de Libros</h2>
             </div>
 
             <div class="col-6">
-                <a href="<%=request.getContextPath()%>/autores/alta"
-                    class="btn btn-success">Alta Autor</a>
+                <a href="<%=request.getContextPath()%>/libros/alta"
+                    class="btn btn-success">Alta Libro</a>
             </div>
         </div>
 
@@ -44,22 +45,63 @@ List<LibroDTO> librosDTO =  (List<LibroDTO>) request.getAttribute("libros");
                         <thead>
                             <tr>
                                 <th>Id</th>
+                                <th>Titulo</th>
                                 <th>Nombre Del Autor</th>
-                                <th>Categoria</th>
                                 <th>Categoria</th>
                                 <th>Año de Publicacion</th>
                                 <th>ISBN</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% for(LibroDTO libro : librosDTO){ %>
+                            <% for(LibroDTO c : librosDTO){ %>
+                                <tr>
+                                    <td><%=c.getId()%></td>
+                                    <td><%=c.getTitulo()%></td>
+                                    <td><%=c.getNombreAutor()%></td>
+                                    <td><%=c.getNombreCategoria()%></td>
+                                    <td><%=c.getAnio()%></td>
+                                    <td><%=c.getISBN()%></td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+
+                    <table class="table table-bordered table-striped" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Titulo</th>
+                                <th>CategoriaId</th>
+                                <th>AutorId</th>
+                                <th>Año de Publicacion</th>
+                                <th>ISBN</th>
+                                <th>Stock</th>
+                                <th>Detalle</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(Libro libro : libros){ %>
                                 <tr>
                                     <td><%=libro.getId()%></td>
                                     <td><%=libro.getTitulo()%></td>
-                                    <td><%=libro.getNombreAutor()%></td>
-                                    <td><%=libro.getNombreCategoria()%></td>
-                                    <td><%=libro.getAnio()%></td>
-                                    <td><%=libro.getISBN()%></td>
+                                    <td><%=libro.getCategoriaId()%></td>
+                                    <td><%=libro.getAutorId()%></td>
+                                    <td><%=libro.getAnoPublicacion()%></td>
+                                    <td><%=libro.getIsbn()%></td>
+                                    <td><%=libro.getStock()%></td>
+                                    <td>
+                                        <a href="<%=request.getContextPath()%>/libros/detalle?id=<%=libro.getId()%>" class="btn btn-success">Detalle</a>
+                                    </td>
+
+                                    <td>
+                                        <a href="<%=request.getContextPath()%>/libros/editar?id=<%=libro.getId()%>" class="btn btn-primary">Editar</a>
+                                    </td>
+
+                                    <td>
+                                        <a href="<%=request.getContextPath()%>/libros/eliminar?id=<%=libro.getId()%>" class="btn btn-danger">Eliminar</a>
+                                    </td>
                                 </tr>
                                 <% } %>
                         </tbody>

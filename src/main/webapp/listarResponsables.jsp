@@ -28,7 +28,7 @@ List<Responsable> responsables =  (List<Responsable>) request.getAttribute("resp
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <h2>Listado de Autores</h2>
+                <h2>Listado de Trabajadores</h2>
             </div>
 
             <div class="col-6">

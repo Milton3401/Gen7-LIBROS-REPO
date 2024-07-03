@@ -73,7 +73,7 @@ Map<String, String> errores = (Map<String, String>) request.getAttribute("errore
 
                     <div class="form-group">
                         <label for="">Email</label>
-                        <input type="text" name="email" id="email" class="form-control" value="${param.email}">
+                        <input type="email" name="email" id="email" class="form-control" value="${param.email}">
                         <%
                             if (errores != null && errores.containsKey("email")){
                                 out.println("<span class='text-danger'>"+ errores.get("email")+"</span>");

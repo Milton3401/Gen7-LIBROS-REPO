@@ -64,29 +64,19 @@ List<Categoria> categorias =  (List<Categoria>) request.getAttribute("categorias
 <div class="container body-content">
     <div class="row">
          <div class="col-md-12">
-             <h2>Iniciar Ruta</h2>
+             <h2>Registrar Un Nuevo Libro</h2>
          </div>
-         <div style="display: block;"><input type="text" name="" id="txtEsOD" ></div>
+         <div style="display: block;"><input type="text" name="" id="txtEsOD" hidden></div>
 
      </div>
 
-     <div class="row">
+    <div class="row">
         <form action="<%=request.getContextPath()%>/libros/alta" method="post">
          <div class="col-md-6">
-            <div class="form-group">
-                <label for="autor">AUTORES</label>
-                <select name="autorId" id="autorId" class="form-control">
-                    <option value="">SELECCIONAR AUTOR</option>
-                    <% for (Autor c : autores) { %>
-                        <option value="<%= c.getId() %>"><%= c.getNombre() + " " + c.getApPaterno() + " " + c.getApMaterno() %></option>
-                    <% } %>
-                </select>   
-                <button class="btn btn-primary btn-xs" style="margin-top: 30px;" onclick="registrarAutor()">Registar Autor</button>             
-            </div>
 
             <div class="form-group">
                 <div class="form-group">
-                    <label for="" style="margin-top: 35px;">NOMBRE DEL LIBRO</label>
+                    <label for="">NOMBRE DEL LIBRO</label>
                     <input type="text" name="titulo" id="titulo" class="form-control" required>
                 </div>
             </div>
@@ -98,7 +88,16 @@ List<Categoria> categorias =  (List<Categoria>) request.getAttribute("categorias
                 </div>
             </div>
 
-
+            <div class="form-group">
+                <label for="autor">AUTORES</label>
+                <select name="autorId" id="autorId" class="form-control">
+                    <option value="">SELECCIONAR AUTOR</option>
+                    <% for (Autor c : autores) { %>
+                        <option value="<%= c.getId() %>"><%= c.getNombre() + " " + c.getApPaterno() + " " + c.getApMaterno() %></option>
+                    <% } %>
+                </select>
+                <button class="btn btn-success" style="margin-top: 30px;" onclick="registrarAutor()">Registar Un Autor Nuevo</button>
+            </div>
          </div>
 
         
@@ -123,11 +122,8 @@ List<Categoria> categorias =  (List<Categoria>) request.getAttribute("categorias
                         <label for="">Identificador Unico Del Libro (ISBN)</label>
                         <input type="text" name="isbn" id="isbn" class="form-control" >
                     </div>
-                    <button class="btn btn-primary btn-xs" style="margin-top: 15px;" onclick="generarISBN13()" required>Generar ISBN-13</button>
+                    <button class="btn btn-success" style="margin-top: 15px;" onclick="generarISBN13()">Generar ISBN y Guardar</button>
                 </div>
-            </div>
-            <div class="form-group">
-                <button  type="submit" class="btn btn-success">Registrar Libro</button>
             </div>
         </div>
      </div>
@@ -140,7 +136,7 @@ List<Categoria> categorias =  (List<Categoria>) request.getAttribute("categorias
                 <div class="modal-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h4>Guardar Direccion</h4>
+                            <h4>Guardar Autor</h4>
                         </div>
                     </div>
                 </div>
@@ -240,7 +236,7 @@ List<Categoria> categorias =  (List<Categoria>) request.getAttribute("categorias
         }
        
         function generarISBN13() {
-            let isbn = '978'; 
+            let isbn = '978';
             let suma = 0;
             for (let i = 0; i < 9; i++) {
                 const digito = Math.floor(Math.random() * 10);
@@ -263,7 +259,7 @@ List<Categoria> categorias =  (List<Categoria>) request.getAttribute("categorias
                     setTimeout(function () {
                         document.getElementById('cargando').style.display = 'none';
                     }, 6000);
-                });       
+                });
      </script>
 </div>
 </body>

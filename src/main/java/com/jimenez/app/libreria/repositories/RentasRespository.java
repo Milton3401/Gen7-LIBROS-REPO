@@ -46,7 +46,18 @@ public class RentasRespository implements IRentasRespository{
 
     @Override
     public List<Renta> listar() throws SQLException {
-        return List.of();
+        List<Renta> rentas = new ArrayList<>();
+
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs=stmt.executeQuery("SELECT * FROM RENTAS")){
+            while (rs.next()){
+                Renta a = this.getRenta(rs);
+                rentas.add(a);
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return rentas;
     }
 
     @Override

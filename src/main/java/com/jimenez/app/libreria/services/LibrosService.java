@@ -69,7 +69,12 @@ public class LibrosService implements ILibrosService{
 
     @Override
     public Optional<Libro> getById(Long id) {
-        return Optional.empty();
+        try{
+            return Optional.ofNullable(librosRepo.getById(id));
+
+        }catch (SQLException e ){
+            throw new RuntimeException(e.getMessage(),e.getCause());
+        }
     }
 
     @Override
