@@ -94,7 +94,11 @@ public class LibrosRepository implements ILibrosRepository{
 
     @Override
     public void eliminar(Long id) throws SQLException {
-
+        String sql ="DELETE FROM LIBROS WHERE ID_LIBRO=?";
+        try(PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setLong(1,id);
+            stmt.executeUpdate();
+        }
     }
     private Libro getLibro(ResultSet rs) throws SQLException{
         Libro a= new Libro();

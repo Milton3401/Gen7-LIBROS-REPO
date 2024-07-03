@@ -28,11 +28,11 @@ List<RentaDTO> rentasDTO =  (List<RentaDTO>) request.getAttribute("rentasDTO");
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <h2>Listado de Autores</h2>
+                <h2>Listado de Rentas Actuales</h2>
             </div>
 
             <div class="col-6">
-                <a href="<%=request.getContextPath()%>/renta/alta"
+                <a href="<%=request.getContextPath()%>/rentas/alta"
                     class="btn btn-success">Rentar Un Libro</a>
             </div>
         </div>

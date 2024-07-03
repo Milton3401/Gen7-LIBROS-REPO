@@ -77,7 +77,6 @@ List<Libro> libros =  (List<Libro>) request.getAttribute("libros2");
                                 <th>ISBN</th>
                                 <th>Stock</th>
                                 <th>Detalle</th>
-                                <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>
                         </thead>
@@ -93,10 +92,6 @@ List<Libro> libros =  (List<Libro>) request.getAttribute("libros2");
                                     <td><%=libro.getStock()%></td>
                                     <td>
                                         <a href="<%=request.getContextPath()%>/libros/detalle?id=<%=libro.getId()%>" class="btn btn-success">Detalle</a>
-                                    </td>
-
-                                    <td>
-                                        <a href="<%=request.getContextPath()%>/libros/editar?id=<%=libro.getId()%>" class="btn btn-primary">Editar</a>
                                     </td>
 
                                     <td>

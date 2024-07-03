@@ -64,16 +64,17 @@ List<Usuario> usuarios =  (List<Usuario>) request.getAttribute("usuarios");
        <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCWeeateTaYGqsHhNcmoDfT7Us-vLDZVPs&amp;sensor=false&amp;language=en"></script>
         <div class="row">
             <div class="col-md-12">
-                <h2>Iniciar Ruta</h2>
+                <h2>Rentar UN Libro </h2>
             </div>
             <!-- <div style="display: block;"><input type="text" name="" id="txtEsOD"></div> -->
         </div>
 
         <div class="row">
+            <form action="<%=request.getContextPath()%>/rentas/alta" method="post">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="">Chofer</label>
-                        <select name="chofer" id="chofer" class="form-control">
+                        <label for="">Titulo</label>
+                        <select name="titulo" id="titulo" class="form-control">
                             <option value="" >SELECCIONAR</option>
                             <% for(Libro c: libros){ %>
                                 <option value="<%=c.getId()%>"><%=c.getTitulo()%></option>
@@ -83,17 +84,16 @@ List<Usuario> usuarios =  (List<Usuario>) request.getAttribute("usuarios");
 
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-9">
-                                <label for="origen">Origen</label>
-                                <input type="text" name="origen" id="origen" class="form-control">
-                                <input type="hidden" name="idOrigen" id="idOrigen" class="form-control">
+                            <div class="col-md-12">
+                                <label for="precio">Precio</label>
+                                <input type="precio" name="precio" id="precio" class="form-control">
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="direcciones">Direcciones Frecuentes</label>
-                        <select name="direcciones" id="direcciones" class="form-control" onchange="actualizarOrigen()">
+                        <label for="responsable">Trabajador en turno</label>
+                        <select name="responsable" id="responsable" class="form-control" onchange="actualizarOrigen()">
                             <option value="" data-direccion="">SELECCIONAR</option>
                             <% for (Responsable c : responsables) { %>
                                 <option value="<%=c.getId()%>"><%=c.getNombre()%></option>
@@ -102,22 +102,18 @@ List<Usuario> usuarios =  (List<Usuario>) request.getAttribute("usuarios");
                     </div>
 
                     <div class="form-group">
-                        <label for="">Fecha Salida</label>
-                        <input type="datetime-local" name="FSalida" id="FSalida" class="form-control">
+                        <label for="fechaRenta">Fecha De Renta</label>
+                        <input type="date" name="fechaRenta" id="fechaRenta" class="form-control">
                     </div>
 
-                    <div class="form-group">
-                        <label for="">Distancia</label>
-                        <input type="text" name="distancia" id="distancia" class="form-control">
-                    </div>
 
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="">Camion</label>
+                        <label for="">Usuario</label>
 
-                        <select name="camion" id="camion" class="form-control">
+                        <select name="usuario" id="usuario" class="form-control">
                             <option value="">SELECCIONAR</option>
                             <% for(Usuario c: usuarios){ %>
                                 <option value="<%=c.getId()%>"><%=c.getNombre()%></option>
@@ -128,27 +124,24 @@ List<Usuario> usuarios =  (List<Usuario>) request.getAttribute("usuarios");
 
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-9">
-                                <label for="destino">Destino</label>
-                                <input type="text" name="destino" id="destino" class="form-control">
-                                <input type="hidden" name="idDestino" id="idDestino" class="form-control">
+                            <div class="col-md-12">
+                                <label for="destino">Estado(Disponible)</label>
+                                <input type="text" name="disponible" id="disponible" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Fecha Estima de LLegada</label>
-                        <input type="datetime-local" name="FELlegada" id="FELlegada" class="form-control">
+                        <label for="">Fecha De Entrega</label>
+                        <input type="date" name="fechaEntrega" id="fechaEntrega" class="form-control">
                     </div>
-
                     <div class="form-group">
-                        <label for="">Capacidad Camion</label>
-                        <input type="text" name="capCamion" id="capCamion" class="form-control">
+                        <button type="submit" class="btn btn-success">Guardar</button>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
+    </form>
         <script>
           function handleResponse(response) {
           for (var i = 0; i < response.items.length; i++) {
@@ -157,6 +150,18 @@ List<Usuario> usuarios =  (List<Usuario>) request.getAttribute("usuarios");
             document.getElementById("content").innerHTML += "<br>" + item.volumeInfo.title;
           }
         }
+
+            $(document).ready(function() {
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0');
+                var yyyy = today.getFullYear();
+
+                var todayFormatted = yyyy + '-' + mm + '-' + dd;
+
+                $('#fechaRenta').val(todayFormatted);
+            });
+
         </script>
         <script src="https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse"></script>
     </body>

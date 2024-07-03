@@ -48,14 +48,6 @@ public class AltaLibroServlet extends HttpServlet {
         Long anoPublicacionLong = Long.parseLong(anoPublicacion);
         Long stockLong = Long.parseLong(stock);
 
-        System.out.println(titulo);
-        System.out.println(autorIdLong);
-        System.out.println(categoriaIdLong);
-        System.out.println(anoPublicacionLong);
-        System.out.println(isbn);
-        System.out.println(stockLong);
-
-
         Map<String, String> errores = new HashMap<>();
 
         if(titulo==null || titulo.isBlank()){

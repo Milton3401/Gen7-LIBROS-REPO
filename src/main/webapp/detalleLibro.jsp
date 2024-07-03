@@ -66,7 +66,6 @@ function buscarLibro() {
             return response.json();
         })
         .then(function(data) {
-            // Llamar a la función handleResponse con los datos recibidos
             handleResponse(data);
         })
         .catch(function(error) {
@@ -75,27 +74,23 @@ function buscarLibro() {
 }
 
     function handleResponse(data) {
-        var foundTextSnippet = false; // Variable para rastrear si se encontró textSnippet
+        var foundTextSnippet = false;
 
         for (var i = 0; i < data.items.length; i++) {
             var item = data.items[i];
-
-            // Verificar si existe 'searchInfo' y 'textSnippet' dentro de 'item'
             if (item.searchInfo && item.searchInfo.textSnippet) {
                 var textSnippet = item.searchInfo.textSnippet;
                 console.log('textSnippet:', textSnippet);
-                
-                // Mostrar textSnippet en un textarea
+
                 document.getElementById("textAreaSnippet").value = textSnippet;
                 
-                foundTextSnippet = true; // Marcamos que hemos encontrado textSnippet
-                break; // Salir del bucle una vez encontrado
+                foundTextSnippet = true;
+                break;
             }
         }
 
         if (!foundTextSnippet) {
             console.log('No se encontró textSnippet en ningún item.');
-            // Puedes manejar aquí el caso donde no se encontró textSnippet, si es necesario
         }
     }
 </script>

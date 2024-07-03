@@ -90,7 +90,12 @@ public class LibrosService implements ILibrosService{
 
     @Override
     public void eliminar(Long id) {
+        try{
+            librosRepo.eliminar(id);
 
+        }catch (SQLException e ){
+            throw new RuntimeException(e.getMessage(),e.getCause());
+        }
     }
     public List<LibroDTO> listaLibroDTO(){
         try{
